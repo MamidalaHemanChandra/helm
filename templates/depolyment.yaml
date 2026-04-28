@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    course: Helm
+    now: K8s 
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      course: Helm
+      now: K8s
+  template:
+    metadata:
+      labels:
+        course: Helm
+        now: K8s
+    spec:
+      containers:
+      - name: nginx
+        image: "nginx:{{ .Values.deployment.nginxVersion }}"
